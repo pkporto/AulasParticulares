@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+
+.header {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: aquamarine;
+    width: 100%;
+    height: 80px;
+}
+
+.header a{
+    font-size: 22px;
+    text-decoration: none;
+    position: relative;
+    color: black;
+}
+
+.header a + a {
+    margin-left: 50px;
+}
+
+.header a::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background: white;
+}
+
+.header a:hover::after{
+    
+    width: 100%;
+    
+    transition: width 200ms ease-in-out;
+}
+
+/* ======= TEACHERS ======== */
+
+.card{
+    margin: 45px auto;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    height: auto;
+    width: 600px;
+    min-height: 400px;
+
+    box-shadow: 0px 2px 4px rgba(100, 100, 100, 0.7);
+
+    animation: up 500ms ease-in-out;
+}
+
+@keyframes up {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+
+
+
+
+
+.card .imagens {
+    background: url('https://source.unsplash.com/collection/8491653/500x500') no-repeat center center / cover;
+}
+
+
+.card .detalhes {
+    background-color: aquamarine;
+}
+
+.card .detalhes .item {
+    padding: 15px;
+    border-bottom: 2px solid black;
+}
+
+
+.card .detalhes .item:last-child{
+   border-bottom: none;
+}
+.detalhes h3,
+.card .detalhes .item div:nth-child(1) {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.7px;
+    font-weight: bold;
+}
+.card .detalhes .item div:nth-child(2) {
+    margin-left: 4px;
+ }
+
+.card .detalhes .item span {
+    background-color: white;
+    padding: 8px 16px;
+    border-radius: 16px;
+    margin-top: 4px;
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+ }
+
+.detalhes h3{
+ margin-left: 15px ;
+}

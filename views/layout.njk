@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link rel='stylesheet' href='/estilo.css'/>
+
+        {% block head %}
+            <title>Aulas particulares</title>
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <div class='header'>
+                <a href="/teachers">Teachers</a>
+                <a href="/students">Students </a>
+            </div>
+        </header>
+
+        {% block content %}{% endblock %}
+    </body>
+</html>
