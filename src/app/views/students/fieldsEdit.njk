@@ -1,0 +1,43 @@
+<div class="card">
+        <section class="imagens"></section>
+
+        <section class="detalhes">
+    
+            <h3>Cadastro</h3>
+            <div class="item">
+                <div>Avatar</div>
+                <div><input type="url" name="avatar_url" value='{{teacher.avatar_url}}'></div>
+            </div>
+            <div class="item">
+                <div>Nome Completo</div>
+                <div><input type="text" name="name" value='{{teacher.name}}'></div>
+            </div>
+            <div class="item">
+                <div>Data de nascimento</div>
+                <div><input type="date" name="birth" value='{{teacher.birth}}'></div>
+            </div>
+            <div class="item">
+                <div>
+                    Grau escolaridade</div>
+                <div>
+                    <select name="graduation" id="">
+                        <option value="EM">Ensino médio completo</option>
+                        <option value="ES">Ensino superior completo</option>
+                        <option value="M">Mestrado</option>
+                        <option value="D">Doutorado</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item">
+                <div>Tipo de aula</div>
+                <div>
+                    <span><input type="radio" name="type" value="P" {% if teacher.type =='P'%}checked {%endif%}>Presencial</span>
+                    <span><input type="radio" name="type" value="D" {% if teacher.type =='D'%}checked {%endif%}>À Distancia</span></div>
+                    
+            </div>
+            <div class="item">
+                <div>Acompanhamento</div>
+                <input type="text" name="acompanhamento" id="" value='{{teacher.acompanhamento}}'>
+            </div>
+            <input type="hidden" name="id" value='{{teacher.id}}'>
+     

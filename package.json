@@ -2,12 +2,10 @@
   "name": "AulasParticulares",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
-   
-
+    "start": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +25,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "nunjucks": "^3.2.1"
+    "method-override": "^3.0.0",
+    "nunjucks": "^3.2.1",
+    "pg": "^8.3.0"
   }
 }

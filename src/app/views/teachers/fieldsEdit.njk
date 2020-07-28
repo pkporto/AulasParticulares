@@ -1,0 +1,44 @@
+<div class="card">
+        <section class="imagens"></section>
+
+        <section class="detalhes">
+            <h3>Cadastro</h3>
+            <div class="item">
+                <div>Avatar</div>
+                <div><input type="url" name="avatar_url" value='{{teacher.avatar_url}}'></div>
+            </div>
+            <div class="item">
+                <div>Nome Completo</div>
+                <div><input type="text" name="name" value='{{teacher.name}}'></div>
+            </div>
+            <div class="item">
+                <div>Data de nascimento</div>
+                <div><input type="date" name="birth_date" value='{{teacher.birth_date}}'></div>
+            </div>
+            <div class="item">
+                <div>
+                    Grau escolaridade</div>
+                <div>
+                    <select name="education_level">
+                        <option {%if teacher.education_level == "EM"%}selected {%endif%}  value="EM">Ensino médio completo</option>
+                        <option {%if teacher.education_level =="ES" %}selected {%endif%} value="ES">Ensino superior completo</option>
+                        <option {%if teacher.education_level =="M" %}selected {%endif%} value="M">Mestrado</option>
+                        <option {%if teacher.education_level =="D" %} selected {%endif%} value="D">Doutorado</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item">
+                <div>Tipo de aula</div>
+                <div>
+                    <span><input type="radio" name="class_type" value="P" {% if teacher.class_type =='P'%}checked {%endif%}>Presencial</span>
+                    <span><input type="radio" name="class_type" value="D" {% if teacher.class_type =='D'%}checked {%endif%}>À Distancia</span></div>
+                    
+            </div>
+            <div class="item">
+                <div>Acompanhamento</div>
+                <input type="text" name="subjects_taught" id="" value='{{teacher.subjects_taught}}'>
+            </div>
+
+<button type="submit">Salvar</button>
+   
+        </section></div>
