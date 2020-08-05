@@ -1,85 +1,86 @@
-const {age,desde} = require('../../lib/uteis');
+const { age, desde } = require('../../lib/uteis');
+const Student = require('../models/students');
+const { renderString } = require('nunjucks');
 
+module.exports = {
+    index(req, res) {
+        Student.all(function (students) {
+            if (!students) return res.send("Erro");
 
-module.exports ={
-    index(req,res){
-    return res.render("students/index",{ students :data.students });
+            return res.render('students/index', { students })
+        })
 
     },
-    post(req,res){
+    create(req, res) {
+        return res.render('students/create')
+    },
+    post(req, res) {
         const keys = Object.keys(req.body);
-        for(key of keys){
-            if(req.body[key] == ''){
-                return res.send('você precisa preencher todos os campos!');
-            }
-        }
-    
-        let {avatar_url, name, birth, graduation, type, acompanhamento} = req.body;
-        return
-    },
-    show(req,res){
-        const id = req.params.id;
 
-        const foundStudent = data.students.find(function(foundStudent){
-            return foundStudent.id == id;
-        })
-    
-        if(!foundStudent) return res.send('Professor não encontrado!');
-    
-        const student = {
-            ...foundStudent,
-            birth: age(foundStudent.birth),
-            materias: foundStudent.acompanhamento.split(','),
-            created_at: new Intl.DateTimeFormat('pt-BR').format(foundStudent.created_at)
+        for (key of keys) {
+            if (req.body[key] == '') return res.send('Você precisa preencher todos os campos')
         }
-    
-        return res.render("students/show", {student});
-    },
-    edit(req,res){
-        const id = req.params.id;
 
-        const foundStudent = data.students.find(function(foundStudent){
-            return foundStudent.id == id;
+        const values = [
+            req.body.avatar_url,
+            req.body.name,
+            desde(req.body.birth_date).iso,
+            req.body.education_level,
+            req.body.class_type,
+            req.body.subjects_taught,
+            created_at = desde(Date.now()).iso
+        ]
+
+        Student.create(values, function(student){
+            if(!student) return res.send('Erro ao cadastrar')
+
+            return res.redirect(`/students/${student.id}`)
         })
-    
-        if(!foundStudent) return res.send('Professor não encontrado!');
-    
-        const student  = {
-            ...foundStudent,
-            birth: desde(foundStudent.birth),
-            acompanhamento: foundStudent.acompanhamento.split(',')
-    
+
+    },
+    show(req, res) {
+        Student.find(req.params.id,function(student){
+            if(!student) return res.send('Erro na busca');
+            student.birth_date = age(student.birth_date); 
+            console.log(student)
+            return res.render('students/show',{student})
+        })
+    },
+    edit(req, res) {
+        Student.find(req.params.id,function(student){
+            if(!student) return res.send('Erro na busca');
+            student.birth_date = desde(student.birth_date).iso; 
+            console.log(student.birth_date)
+            student.subjects_taught = student.subjects_taught.split(',');
+
+            return res.render('students/edit',{student})
+        })
+    },
+    put(req, res) {
+
+        const keys = Object.keys(req.body)
+
+        for(key in keys){
+            if(req.body[key]=='') return res.send('Nao foi editado')
         }
-        
-        return res.render('students/edit', {student})
-    },
-    put(req,res){
-        const {id} = req.body;
 
-        let index = 0;
-    
-        const foundStudent = data.students.find(function(foundStudent, foundIndex){
-            if(foundStudent.id == id){
-                index = foundIndex;
-                return true
-            }
-        })
-    
-        if(!foundStudent) res.send('nao achou o professor');
-        const student = {
-            ...foundStudent,
-            ...req.body
-        }
-        return
-    },
-    delete(req,res){
-        const {id} = req.body;
+        const values = [
+            req.body.avatar_url,
+            req.body.name,
+            desde(req.body.birth_date).iso,
+            req.body.education_level,
+            req.body.class_type,
+            req.body.subjects_taught,
+            req.body.id
+        ]
 
-        const filteredStudent = data.students.filter(function(student){
-            return student.id != id;
+        Student.edit(values, function(){
+
+            return res.redirect(`/students/${req.body.id}`)
         })
-    
-        data.students = filteredStudent;
+
+    },
+    delete(req, res) {
     }
 }
 

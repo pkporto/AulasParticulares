@@ -5,13 +5,24 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="card table-container">
+        <div class="search">
+    <a href="/teachers/{{teacher.id}}">Ver</a> 
+    <div>
+        <form action="/teachers" method="get">
+        <input type="text" placeholder='escreve' name='filter' value='{{filter}}'>
+        <button type="submit">Filtrar</button>
+        </form>
+    </div>
+        </div>
+
+
         <table  width='100%'>
             <thead>
                 <tr>
                     <th>Professor</th>
                     <th>Acompanhamento</th>
+                      <th>Qtd alunos</th>
                     <th>Ação</th>
                 </tr>
             </thead>
@@ -25,6 +36,7 @@
                     <td>
                         {{teacher.acompanhamento}}
                     </td>
+                    <td>{{teacher.total_students}}</td>
                     <td><a href="/teachers/{{teacher.id}}">Ver</a> </td>
                 </tr>
                      {%endfor%}
@@ -32,4 +44,5 @@
             </tbody>
         </table>
     </div>
+     <script src="/scripts.js"></script>
 {% endblock %}

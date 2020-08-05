@@ -4,16 +4,16 @@
         <h3>Informações</h3>
         <div class="item">
             <div>Nome Completo</div>
-            <div>{{teacher.name}}</div>
+            <div>{{student.avatar_url}}</div>
         </div>
         <div class="item">
             <div>Idade</div>
-            <div>{{teacher.birth}}</div>
+            <div>{{student.birth_date}}</div>
         </div>
         <div class="item">
             <div>
                 Grau escolaridade</div>
-            <div>{% switch teacher.graduation %}
+            <div>{% switch student.graduation %}
                 {% case  'EM'%}
                     Ensino médio
                     {% case 'ES'%}
@@ -29,7 +29,7 @@
                         </div>
                         <div class="item">
                             <div>Tipo de aula</div>
-                            {%switch teacher.type%}
+                            {%switch student.type%}
                             {%case 'P'%}
                                 <span>Presencial</span>
                                 {%case 'D'%}
@@ -40,14 +40,14 @@
                                 </div>
                                 <div class="item">
                                     <div>Acompanhamento</div>
-                                    {%for materia in teacher.materias%}
+                                    {%for materia in student.materias%}
                                     <span>{{materia}}</span>
                                     {%endfor%}
                                 </div>
                                 <div class="item">
                                     <div>Desde</div>
-                                    <div>{{teacher.created_at}}</div>
+                                    <div>{{student.created_at}}</div>
                                 </div>
-                                <a href='/teachers/{{teacher.id}}/edit'>Editar</a>
+                                <a href='/students/{{student.id}}/edit'>Editar</a>
                             </div>
                         </div>
